@@ -36,20 +36,7 @@ const FIXTURES: Record<string, { fixture: BoundaryFixture; label: string }> = {
   kharagpur: { fixture: kharagpurB as unknown as BoundaryFixture, label: 'Kharagpur, West Bengal, India' },
 };
 
-export const EXAMPLE_CHIPS = [
-  'Delhi',
-  'Mumbai',
-  'Kanpur',
-  'Kharagpur',
-  'Bengaluru',
-  'Kolkata',
-  'Chennai',
-  'Hyderabad',
-  'Pune',
-  'Jaipur',
-  'Ahmedabad',
-  'Lucknow',
-];
+export const EXAMPLE_CHIPS = ['Delhi', 'Mumbai', 'Kanpur', 'Kharagpur'];
 
 function placeFromFixture(id: string): Place {
   const { fixture } = FIXTURES[id];
