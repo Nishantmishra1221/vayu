@@ -22,7 +22,7 @@ export default function MapLegend() {
   const toggleOverlay = useAppStore((s) => s.toggleOverlay);
 
   return (
-    <div className="pointer-events-auto absolute bottom-4 left-4 z-20 max-w-[420px] rounded border border-line bg-panel/90 p-2.5 backdrop-blur-sm">
+    <div className="pointer-events-auto max-w-[420px] shrink-0 rounded border border-line bg-panel/90 p-2.5 backdrop-blur-sm">
       {activeLayer === 'pollution' && (
         <>
           <div className="mb-2 flex flex-wrap gap-0.5" role="tablist" aria-label="Pollutant">

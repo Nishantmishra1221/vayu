@@ -17,8 +17,31 @@ npm run build      # typecheck + production build
 No keys, no backend, no network required: by default (`VITE_USE_MOCKS` unset or `true`)
 everything is served from cached boundary fixtures + deterministic client-side synthesis.
 When online, place search and reverse geocoding upgrade transparently to live Nominatim.
-Set `VITE_USE_MOCKS=false` once the backend serves the contracts in the build spec
-(`/api/snapshot`, `/api/forecast`, `/api/inspect`).
+
+## Backend connection (.env)
+
+Copy `.env.example` to `.env`:
+
+```env
+VITE_USE_MOCKS=true               # false → hit the real backend
+VITE_API_BASE_URL=http://localhost:8000
+```
+
+All env access lives in `src/config.ts`; all HTTP calls live in `src/api/client.ts` and
+target `{VITE_API_BASE_URL}/api/...` using the contracts in `VAYU_FRONTEND_BUILD_SPEC.md` §8.
+The backend team only needs to implement those endpoints and flip `VITE_USE_MOCKS=false` —
+no component changes required. Restart `npm run dev` after editing `.env`.
+
+## Routes
+
+| Route | What it shows |
+|---|---|
+| `/` | Landing search state (clears any selected place) |
+| `/city/:placeId` | Command centre; deep-linkable (`/city/delhi`, `/city/osm-R1234…`) |
+| anything else | 404 with a back link |
+
+The map never unmounts across navigation — routes render overlays into the shared shell
+(`src/pages/AppLayout.tsx`).
 
 ## Demo path (4 min)
 
@@ -45,6 +68,8 @@ Keyboard: `/` search · `1–5` layers · `Esc` close inspector · `Space` play 
   Kanpur / Kharagpur, seeded plausible data for any other place.
 - `src/mocks/boundaries/` — real admin polygons (simplified), regenerate with
   `node scripts/fetch-boundaries.mjs`.
+- `src/pages/` — route components (`AppLayout`, `LandingPage`, `CityPage`, `NotFoundPage`).
+- `src/config.ts` — every env-driven setting in one place.
 - `src/components/{layout,search,map,inspector,shared}` — UI per the build spec.
 
 Stack: React 18 · TypeScript · Vite · MapLibre GL (CARTO dark-matter, ESRI satellite) ·

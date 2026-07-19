@@ -1,15 +1,16 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Layers, Wind, RadioTower, Hexagon, ShieldAlert } from 'lucide-react';
 import { useAppStore } from '../../store/useAppStore';
 import { formatTimeIST } from '../../lib/format';
 import PlaceSearch from '../search/PlaceSearch';
-import { USE_MOCKS } from '../../api/client';
+import { USE_MOCKS } from '../../config';
 
 export default function TopBar() {
   const place = useAppStore((s) => s.place);
   const overlays = useAppStore((s) => s.overlays);
   const toggleOverlay = useAppStore((s) => s.toggleOverlay);
-  const reset = useAppStore((s) => s.reset);
+  const navigate = useNavigate();
   const [now, setNow] = useState(new Date());
   const [layersOpen, setLayersOpen] = useState(false);
 
@@ -21,7 +22,7 @@ export default function TopBar() {
   return (
     <header className="relative z-30 flex h-12 shrink-0 items-center gap-4 border-b border-line bg-panel px-4">
       <button
-        onClick={reset}
+        onClick={() => navigate('/')}
         className="flex items-center gap-2 font-display text-base font-semibold tracking-wide text-primary"
         title="Back to search"
       >

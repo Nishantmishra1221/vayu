@@ -1,5 +1,6 @@
 import { Hexagon } from 'lucide-react';
 import { EXAMPLE_CHIPS, searchPlaces } from '../../api/client';
+import { useAppStore } from '../../store/useAppStore';
 import PlaceSearch from './PlaceSearch';
 import { useResolveFlow } from './useResolveFlow';
 
@@ -7,8 +8,11 @@ export default function LandingOverlay() {
   const resolve = useResolveFlow();
 
   const pickChip = async (name: string) => {
+    // immediate feedback while geocoding runs; resolve() takes over the checklist
+    useAppStore.setState({ resolving: [{ label: `Searching "${name}"…`, done: false }] });
     const results = await searchPlaces(name);
     if (results[0]) await resolve(results[0]);
+    else useAppStore.setState({ resolving: null });
   };
 
   return (

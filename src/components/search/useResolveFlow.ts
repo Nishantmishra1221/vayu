@@ -1,4 +1,5 @@
 import { useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useQueryClient } from '@tanstack/react-query';
 import { getForecast, getSnapshot, resolvePlace } from '../../api/client';
 import { useAppStore } from '../../store/useAppStore';
@@ -13,6 +14,7 @@ const wait = (ms: number) => new Promise((r) => setTimeout(r, ms));
  */
 export function useResolveFlow() {
   const queryClient = useQueryClient();
+  const navigate = useNavigate();
   const setPlace = useAppStore((s) => s.setPlace);
   const setResolving = useAppStore((s) => s.setResolving);
 
@@ -59,6 +61,7 @@ export function useResolveFlow() {
 
         setPlace(place);
         setResolving(null);
+        navigate(`/city/${place.placeId}`);
         return true;
       } catch (e) {
         const msg =
@@ -73,6 +76,6 @@ export function useResolveFlow() {
         return false;
       }
     },
-    [queryClient, setPlace, setResolving],
+    [queryClient, setPlace, setResolving, navigate],
   );
 }

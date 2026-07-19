@@ -9,15 +9,16 @@ import mumbaiB from '../mocks/boundaries/mumbai.json';
 import kanpurB from '../mocks/boundaries/kanpur.json';
 import kharagpurB from '../mocks/boundaries/kharagpur.json';
 
-/**
- * Data access layer. VITE_USE_MOCKS (default true) serves everything from
- * fixtures + deterministic synthesis so the demo runs with the network
- * unplugged. Live geocoding via Nominatim is attempted when available and
- * degrades silently to fixtures.
- */
-export const USE_MOCKS = import.meta.env.VITE_USE_MOCKS !== 'false';
+import { apiUrl, NOMINATIM_URL as NOMINATIM, USE_MOCKS } from '../config';
 
-const NOMINATIM = 'https://nominatim.openstreetmap.org';
+/**
+ * Data access layer. VITE_USE_MOCKS (default true, see .env) serves everything
+ * from fixtures + deterministic synthesis so the demo runs with the network
+ * unplugged. With VITE_USE_MOCKS=false, requests go to VITE_API_BASE_URL using
+ * the contracts in VAYU_FRONTEND_BUILD_SPEC.md §8. Live geocoding via
+ * Nominatim is attempted when available and degrades silently to fixtures.
+ */
+export { USE_MOCKS };
 
 interface BoundaryFixture {
   displayName: string;
@@ -128,7 +129,7 @@ export async function resolvePlace(s: GeocodeSuggestion): Promise<Place> {
   const bbox = turf.bbox(feature) as [number, number, number, number];
   const areaKm2 = Math.round(turf.area(feature) / 1e6);
   const state = hit?.address?.state ?? '';
-  const shortName = s.displayName.split(',').slice(0, 2).join(',');
+  const shortName = ((hit?.display_name as string) ?? s.displayName).split(',').slice(0, 2).join(',');
   return {
     placeId: `osm-${typeChar}${s.osmId}`,
     displayName: shortName,
@@ -186,7 +187,7 @@ export async function getSnapshot(place: Place): Promise<Snapshot> {
     }
     return s;
   }
-  const res = await fetch(`/api/snapshot?placeId=${encodeURIComponent(place.placeId)}`);
+  const res = await fetch(apiUrl(`/api/snapshot?placeId=${encodeURIComponent(place.placeId)}`));
   if (!res.ok) throw new Error(`snapshot ${res.status}`);
   return res.json();
 }
@@ -200,7 +201,31 @@ export async function getForecast(place: Place): Promise<Forecast> {
     }
     return f;
   }
-  const res = await fetch(`/api/forecast?placeId=${encodeURIComponent(place.placeId)}`);
+  const res = await fetch(apiUrl(`/api/forecast?placeId=${encodeURIComponent(place.placeId)}`));
   if (!res.ok) throw new Error(`forecast ${res.status}`);
   return res.json();
+}
+
+/**
+ * Rebuild a search suggestion from a placeId in the URL, so /city/:placeId
+ * deep links resolve: fixture ids directly, "osm-R1234" style via Nominatim.
+ */
+export function suggestionForPlaceId(placeId: string): GeocodeSuggestion | null {
+  const fx = FIXTURES[placeId];
+  if (fx) {
+    return {
+      displayName: fx.label,
+      osmType: 'fixture',
+      osmId: 0,
+      lat: fx.fixture.centroid[1],
+      lon: fx.fixture.centroid[0],
+      fixtureId: placeId,
+    };
+  }
+  const m = placeId.match(/^osm-([NWR])(\d+)$/);
+  if (m) {
+    const osmType = m[1] === 'R' ? 'relation' : m[1] === 'W' ? 'way' : 'node';
+    return { displayName: placeId, osmType, osmId: Number(m[2]), lat: 0, lon: 0 };
+  }
+  return null;
 }

@@ -41,7 +41,7 @@ export default function TimeScrubber() {
 
   return (
     <div
-      className={`pointer-events-auto absolute bottom-4 left-1/2 z-20 flex w-[440px] -translate-x-1/2 items-center gap-3 rounded border border-line bg-panel/90 px-3 py-2 backdrop-blur-sm transition-opacity ${
+      className={`pointer-events-auto flex w-[430px] min-w-[280px] shrink items-center gap-3 rounded border border-line bg-panel/90 px-3 py-2 backdrop-blur-sm transition-opacity ${
         timeVarying ? '' : 'opacity-40'
       }`}
     >
