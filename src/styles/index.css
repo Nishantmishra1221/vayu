@@ -3,27 +3,27 @@
 @tailwind utilities;
 
 :root {
-  --bg-base: #0e1116;
-  --bg-panel: #161a21;
-  --bg-elevated: #1e242d;
-  --border: #2a313c;
-  --border-strong: #3a424f;
-  --text-primary: #e8ecf1;
-  --text-secondary: #99a3b0;
-  --text-muted: #667080;
-  --accent: #4c9aff;
-  --accent-dim: #1f3a5f;
-  --aqi-good: #2e9e5b;
-  --aqi-satisfy: #96c93d;
-  --aqi-moderate: #f2c230;
-  --aqi-poor: #f07c1f;
-  --aqi-verypoor: #e0453b;
+  --bg-base: #f3f6fa;
+  --bg-panel: #ffffff;
+  --bg-elevated: #eaf0f6;
+  --border: #e2e8f0;
+  --border-strong: #c7d2df;
+  --text-primary: #1b2c40;
+  --text-secondary: #44586e;
+  --text-muted: #5f7288;
+  --accent: #2563eb;
+  --accent-dim: #e4edfc;
+  --aqi-good: #16834a;
+  --aqi-satisfy: #63970f;
+  --aqi-moderate: #b58500;
+  --aqi-poor: #cc5f0a;
+  --aqi-verypoor: #cd3a30;
   --aqi-severe: #8c2a2a;
-  --source-industrial: #d8622c;
-  --source-traffic: #8b7bd8;
-  --source-biomass: #3e9e58;
-  --source-dust: #8a8a80;
-  --source-other: #556070;
+  --source-industrial: #c25518;
+  --source-traffic: #6c58c9;
+  --source-biomass: #2f8a4b;
+  --source-dust: #6f6f65;
+  --source-other: #5a6675;
 }
 
 html,
@@ -138,7 +138,7 @@ body {
 
 /* MapLibre chrome adjustments */
 .maplibregl-ctrl-attrib {
-  background: rgba(14, 17, 22, 0.7) !important;
+  background: rgba(255, 255, 255, 0.75) !important;
   font-size: 10px;
 }
 .maplibregl-ctrl-attrib a {

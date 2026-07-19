@@ -10,12 +10,12 @@ export default function BoundaryLayer() {
       <Layer
         id="boundary-fill"
         type="fill"
-        paint={{ 'fill-color': '#4C9AFF', 'fill-opacity': 0.03 }}
+        paint={{ 'fill-color': '#2563EB', 'fill-opacity': 0.04 }}
       />
       <Layer
         id="boundary-line"
         type="line"
-        paint={{ 'line-color': '#4C9AFF', 'line-width': 2, 'line-opacity': 0.85 }}
+        paint={{ 'line-color': '#2563EB', 'line-width': 2, 'line-opacity': 0.85 }}
       />
     </Source>
   );

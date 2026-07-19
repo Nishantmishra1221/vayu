@@ -15,7 +15,7 @@ export default function LayerRail() {
   const setActiveLayer = useAppStore((s) => s.setActiveLayer);
 
   return (
-    <nav className="z-20 flex w-14 shrink-0 flex-col items-center gap-1 border-r border-line bg-panel py-3">
+    <nav className="z-20 flex w-14 shrink-0 flex-col items-center gap-1.5 border-r border-line bg-panel py-3">
       {LAYERS.map(({ key, label, shortcut, icon: Icon }) => {
         const active = key === activeLayer;
         return (
@@ -24,7 +24,7 @@ export default function LayerRail() {
             onClick={() => setActiveLayer(key)}
             title={`${label} (${shortcut})`}
             aria-pressed={active}
-            className={`group relative flex h-10 w-10 items-center justify-center rounded transition-colors ${
+            className={`group relative flex h-11 w-11 items-center justify-center rounded-md transition-colors ${
               active
                 ? 'bg-accent-dim text-accent'
                 : 'text-muted hover:bg-elevated hover:text-secondary'
@@ -32,7 +32,7 @@ export default function LayerRail() {
           >
             <Icon size={18} strokeWidth={active ? 2.2 : 1.8} />
             {active && <span className="absolute left-0 top-1.5 bottom-1.5 w-0.5 rounded-full bg-accent" />}
-            <span className="absolute -bottom-0.5 right-1 font-mono text-[8px] text-muted">{shortcut}</span>
+            <span className="absolute -bottom-0.5 right-1 font-mono text-[9px] text-muted">{shortcut}</span>
           </button>
         );
       })}

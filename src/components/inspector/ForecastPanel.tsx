@@ -55,25 +55,26 @@ export default function ForecastPanel({ inspect }: { inspect: InspectResult }) {
               dataKey="offsetHours"
               ticks={[0, 12, 24, 36, 48, 60, 72]}
               tickFormatter={(h: number) => (h === 0 ? 'now' : `+${h}h`)}
-              tick={{ fill: '#667080', fontSize: 9, fontFamily: 'IBM Plex Mono' }}
-              axisLine={{ stroke: '#2A313C' }}
+              tick={{ fill: '#45566B', fontSize: 10, fontFamily: 'IBM Plex Mono' }}
+              axisLine={{ stroke: '#D8DFE7' }}
               tickLine={false}
             />
             <YAxis
               domain={[0, Math.ceil(maxY / 50) * 50]}
-              tick={{ fill: '#667080', fontSize: 9, fontFamily: 'IBM Plex Mono' }}
+              tick={{ fill: '#45566B', fontSize: 10, fontFamily: 'IBM Plex Mono' }}
               axisLine={false}
               tickLine={false}
             />
             <Tooltip
-              cursor={{ stroke: '#3A424F', strokeDasharray: '3 3' }}
+              cursor={{ stroke: '#B6C1CD', strokeDasharray: '3 3' }}
               contentStyle={{
-                background: '#1E242D',
-                border: '1px solid #2A313C',
-                borderRadius: 4,
-                fontSize: 11,
+                background: '#FFFFFF',
+                border: '1px solid #D8DFE7',
+                borderRadius: 6,
+                fontSize: 12,
                 fontFamily: 'IBM Plex Mono',
-                color: '#E8ECF1',
+                color: '#172333',
+                boxShadow: '0 4px 12px rgba(23, 35, 51, 0.12)',
               }}
               labelFormatter={(h) => (h === 0 ? 'now' : `+${h} hours`)}
               formatter={(value: any, name: any) =>
@@ -82,10 +83,10 @@ export default function ForecastPanel({ inspect }: { inspect: InspectResult }) {
                   : [value, 'AQI']
               }
             />
-            <Area dataKey="band" fill="#4C9AFF" fillOpacity={0.14} stroke="none" isAnimationActive={false} />
+            <Area dataKey="band" fill="#2563EB" fillOpacity={0.12} stroke="none" isAnimationActive={false} />
             <Line
               dataKey="aqi"
-              stroke="#4C9AFF"
+              stroke="#2563EB"
               strokeWidth={2}
               dot={false}
               isAnimationActive={false}
@@ -100,7 +101,7 @@ export default function ForecastPanel({ inspect }: { inspect: InspectResult }) {
           </ComposedChart>
         </ResponsiveContainer>
       </div>
-      <p className="mt-1 text-[9px] text-muted">
+      <p className="mt-1 text-[10px] text-muted">
         shaded ribbon = model confidence interval · band colours = CPCB categories
       </p>
     </section>

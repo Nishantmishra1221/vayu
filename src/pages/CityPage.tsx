@@ -58,11 +58,11 @@ export default function CityPage() {
       {/* Everything inside this wrapper shifts left while the inspector is open */}
       <div
         className={`pointer-events-none absolute inset-y-0 left-0 z-20 transition-all duration-200 ${
-          inspector ? 'right-[380px]' : 'right-0'
+          inspector ? 'right-0 sm:right-[380px]' : 'right-0'
         }`}
       >
         <BasemapToggle />
-        <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between gap-3">
+        <div className="absolute bottom-4 left-4 right-4 flex flex-wrap items-end justify-between gap-3">
           <MapLegend />
           <TimeScrubber />
         </div>

@@ -9,7 +9,7 @@ function Swatch({ color, label }: { color: string; label: string }) {
   return (
     <span className="flex items-center gap-1">
       <span className="inline-block h-2.5 w-2.5 rounded-sm" style={{ background: color }} />
-      <span className="text-[10px] text-secondary">{label}</span>
+      <span className="text-[11px] text-secondary">{label}</span>
     </span>
   );
 }
@@ -22,7 +22,7 @@ export default function MapLegend() {
   const toggleOverlay = useAppStore((s) => s.toggleOverlay);
 
   return (
-    <div className="pointer-events-auto max-w-[420px] shrink-0 rounded border border-line bg-panel/90 p-2.5 backdrop-blur-sm">
+    <div className="pointer-events-auto max-w-[min(420px,calc(100vw-2rem))] shrink-0 rounded border border-line bg-panel/95 p-3 shadow-card backdrop-blur-sm">
       {activeLayer === 'pollution' && (
         <>
           <div className="mb-2 flex flex-wrap gap-0.5" role="tablist" aria-label="Pollutant">
@@ -32,7 +32,7 @@ export default function MapLegend() {
                 role="tab"
                 aria-selected={pollutant === p}
                 onClick={() => setPollutant(p)}
-                className={`rounded px-2 py-0.5 font-mono text-[10px] uppercase transition-colors ${
+                className={`rounded px-2 py-0.5 font-mono text-[11px] uppercase transition-colors ${
                   pollutant === p
                     ? 'bg-accent-dim text-accent'
                     : 'text-muted hover:bg-elevated hover:text-secondary'
@@ -60,7 +60,7 @@ export default function MapLegend() {
             ))}
             <SourceChip source={pollutant === 'aqi' ? 'cpcb' : 'cpcb'} title="CPCB stations, IDW interpolated" />
           </div>
-          <p className="mt-1 text-[9px] text-muted">
+          <p className="mt-1 text-[10px] text-muted">
             interpolated surface · {pollutant === 'aqi' ? 'CPCB AQI bands' : `${POLLUTANT_META[pollutant as keyof typeof POLLUTANT_META].unit} vs CPCB standard`}
           </p>
         </>
@@ -74,13 +74,13 @@ export default function MapLegend() {
             <SourceChip source="worldpop" />
           </div>
           <div className="flex items-center justify-between gap-3">
-            <p className="text-[9px] text-muted">people per km²</p>
-            <label className="flex cursor-pointer items-center gap-1.5 text-[10px] text-secondary">
+            <p className="text-[10px] text-muted">people per km²</p>
+            <label className="flex cursor-pointer items-center gap-1.5 text-[11px] text-secondary">
               <input
                 type="checkbox"
                 checked={overlays.vulnerable}
                 onChange={() => toggleOverlay('vulnerable')}
-                className="accent-[#4C9AFF]"
+                className="accent-[#2563EB]"
               />
               show vulnerable sites
             </label>
@@ -95,23 +95,23 @@ export default function MapLegend() {
             ))}
             <SourceChip source="esa-worldcover" />
           </div>
-          <p className="text-[9px] text-muted">% vegetated — tree cover, grassland, cropland</p>
+          <p className="text-[10px] text-muted">% vegetated — tree cover, grassland, cropland</p>
         </div>
       )}
       {activeLayer === 'traffic' && (
         <div className="space-y-1.5">
           <div className="flex items-center gap-2.5">
-            <Swatch color="#2E9E5B" label="free flow" />
-            <Swatch color="#F2C230" label="slow" />
-            <Swatch color="#E0453B" label="jammed" />
+            <Swatch color="#199A55" label="free flow" />
+            <Swatch color="#DFA700" label="slow" />
+            <Swatch color="#D63A2F" label="jammed" />
             <SourceChip source="tomtom" />
           </div>
-          <label className="flex cursor-pointer items-center gap-1.5 text-[10px] text-secondary">
+          <label className="flex cursor-pointer items-center gap-1.5 text-[11px] text-secondary">
             <input
               type="checkbox"
               checked={overlays.traffic}
               onChange={() => toggleOverlay('traffic')}
-              className="accent-[#4C9AFF]"
+              className="accent-[#2563EB]"
             />
             congestion colouring
           </label>
@@ -120,10 +120,10 @@ export default function MapLegend() {
       {activeLayer === 'sources' && (
         <div className="space-y-1">
           <div className="flex flex-wrap items-center gap-2.5">
-            <Swatch color="#E0453B" label="fire (VIIRS, sized by FRP)" />
-            <Swatch color="#D8622C" label="industrial land use" />
-            <Swatch color="#8A8A80" label="construction" />
-            <Swatch color="#8B7BD8" label="road corridor" />
+            <Swatch color="#D63A2F" label="fire (VIIRS, sized by FRP)" />
+            <Swatch color="#C25518" label="industrial land use" />
+            <Swatch color="#6F6F65" label="construction" />
+            <Swatch color="#6C58C9" label="road corridor" />
           </div>
           <div className="flex gap-1">
             <SourceChip source="firms" />

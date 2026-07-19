@@ -30,7 +30,7 @@ export default function OrderDraftModal({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-base/70 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-primary/30 backdrop-blur-sm"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
@@ -49,7 +49,7 @@ export default function OrderDraftModal({
                 setCopied(true);
                 setTimeout(() => setCopied(false), 1800);
               }}
-              className="flex items-center gap-1.5 rounded border border-line px-2.5 py-1 text-[10px] text-secondary hover:text-primary"
+              className="flex items-center gap-1.5 rounded border border-line px-2.5 py-1 text-[11px] text-secondary hover:text-primary"
             >
               {copied ? <Check size={11} className="text-aqi-good" /> : <Copy size={11} />}
               {copied ? 'copied' : 'copy'}
@@ -59,7 +59,7 @@ export default function OrderDraftModal({
             </button>
           </div>
         </div>
-        <pre className="overflow-y-auto whitespace-pre-wrap px-5 py-4 font-mono text-[11px] leading-relaxed text-primary">
+        <pre className="overflow-y-auto whitespace-pre-wrap px-5 py-4 font-mono text-[12px] leading-relaxed text-primary">
           {draft}
         </pre>
       </div>

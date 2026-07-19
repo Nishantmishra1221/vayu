@@ -8,9 +8,9 @@ import OrderDraftModal from './OrderDraftModal';
 
 const SEVERITY_STYLE: Record<RankedAction['severity'], { dot: string; label: string }> = {
   critical: { dot: '#8C2A2A', label: 'CRITICAL' },
-  high: { dot: '#E0453B', label: 'HIGH' },
-  medium: { dot: '#F2C230', label: 'MEDIUM' },
-  low: { dot: '#4C9AFF', label: 'LOW' },
+  high: { dot: '#D63A2F', label: 'HIGH' },
+  medium: { dot: '#DFA700', label: 'MEDIUM' },
+  low: { dot: '#2563EB', label: 'LOW' },
 };
 
 /** Section 6 — ranked, statutorily grounded recommended actions. */
@@ -49,16 +49,16 @@ export default function ActionsPanel({ inspect }: { inspect: InspectResult }) {
             return (
               <li key={a.id} className="rounded border border-line bg-elevated/40 p-3">
                 <div className="mb-1.5 flex items-center justify-between">
-                  <span className="flex items-center gap-1.5 font-mono text-[10px] tracking-wider text-secondary">
+                  <span className="flex items-center gap-1.5 font-mono text-[11px] tracking-wider text-secondary">
                     <span className="inline-block h-2 w-2 rounded-full" style={{ background: sev.dot }} />
                     {sev.label}
                   </span>
-                  <span className="font-mono text-[10px] capitalize text-muted" title={`rank score ${a.rankScore}`}>
+                  <span className="font-mono text-[11px] capitalize text-muted" title={`rank score ${a.rankScore}`}>
                     {a.category} · {a.rankScore.toFixed(2)}
                   </span>
                 </div>
                 <p className="text-2xs font-medium leading-snug text-primary">{a.action}</p>
-                <dl className="mt-2 space-y-1 text-[10px] leading-relaxed">
+                <dl className="mt-2 space-y-1 text-[11px] leading-relaxed">
                   <div className="flex gap-2">
                     <dt className="w-16 shrink-0 text-muted">Why</dt>
                     <dd className="text-secondary">{a.reasoning}</dd>
@@ -91,13 +91,13 @@ export default function ActionsPanel({ inspect }: { inspect: InspectResult }) {
                 <div className="mt-2.5 flex gap-2">
                   <button
                     onClick={() => setDraftFor(a)}
-                    className="rounded border border-accent-dim bg-accent-dim/60 px-2.5 py-1 text-[10px] text-accent transition-colors hover:bg-accent-dim"
+                    className="rounded border border-accent-dim bg-accent-dim/60 px-2.5 py-1 text-[11px] text-accent transition-colors hover:bg-accent-dim"
                   >
                     Generate order draft
                   </button>
                   <button
                     onClick={() => setDismissed((d) => [...d, a.id])}
-                    className="rounded border border-line px-2.5 py-1 text-[10px] text-muted hover:text-secondary"
+                    className="rounded border border-line px-2.5 py-1 text-[11px] text-muted hover:text-secondary"
                   >
                     Dismiss
                   </button>
@@ -109,7 +109,7 @@ export default function ActionsPanel({ inspect }: { inspect: InspectResult }) {
       )}
       <button
         onClick={() => setShowAdvisory((v) => !v)}
-        className="mt-3 flex items-center gap-1.5 text-[10px] text-muted hover:text-accent"
+        className="mt-3 flex items-center gap-1.5 text-[11px] text-muted hover:text-accent"
       >
         <Languages size={11} /> citizen advisory ({advisory.language})
       </button>

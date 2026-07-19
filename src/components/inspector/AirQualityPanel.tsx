@@ -29,7 +29,7 @@ export default function AirQualityPanel({ inspect }: { inspect: InspectResult })
                 <td className="w-12 py-0.5 font-mono text-secondary">{meta.label}</td>
                 <td className="w-[86px] py-0.5 text-right font-mono text-primary">
                   {p.value.toFixed(1)}
-                  <span className="ml-1 text-[9px] text-muted">{meta.unit}</span>
+                  <span className="ml-1 text-[10px] text-muted">{meta.unit}</span>
                 </td>
                 <td className="px-2 py-0.5">
                   <div
@@ -40,7 +40,7 @@ export default function AirQualityPanel({ inspect }: { inspect: InspectResult })
                       className="h-full rounded-full"
                       style={{
                         width: `${Math.max(3, frac * 100)}%`,
-                        background: p.exceeds ? band.color : '#3A424F',
+                        background: p.exceeds ? band.color : '#9FB0C0',
                       }}
                     />
                     {/* 1.0× norm marker */}
@@ -60,7 +60,7 @@ export default function AirQualityPanel({ inspect }: { inspect: InspectResult })
           })}
         </tbody>
       </table>
-      <p className="mt-2 flex items-center gap-1.5 text-[10px] text-muted">
+      <p className="mt-2 flex items-center gap-1.5 text-[11px] text-muted">
         <SourceChip source="cpcb" />
         {aq.measurement === 'measured'
           ? `measured at ${aq.nearestStation.name}`

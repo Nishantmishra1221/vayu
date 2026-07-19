@@ -1,7 +1,7 @@
 import type { StyleSpecification } from 'maplibre-gl';
 
-/** CARTO dark-matter — free vector style, no key. The map is dark; data is the only saturated colour. */
-export const DARK_STYLE = 'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json';
+/** CARTO positron — free light vector style, no key. The map stays quiet; data is the only saturated colour. */
+export const ROADS_STYLE = 'https://basemaps.cartocdn.com/gl/positron-gl-style/style.json';
 
 /** ESRI World Imagery raster tiles for the satellite view. */
 export const SATELLITE_STYLE: StyleSpecification = {
@@ -18,7 +18,7 @@ export const SATELLITE_STYLE: StyleSpecification = {
     },
   },
   layers: [
-    { id: 'bg', type: 'background', paint: { 'background-color': '#0E1116' } },
+    { id: 'bg', type: 'background', paint: { 'background-color': '#E8EDF2' } },
     { id: 'esri', type: 'raster', source: 'esri', paint: { 'raster-saturation': -0.25 } },
   ],
 };

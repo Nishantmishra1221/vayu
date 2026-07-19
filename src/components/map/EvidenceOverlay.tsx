@@ -4,11 +4,11 @@ import { useAppStore } from '../../store/useAppStore';
 import { useInspect } from '../../api/queries';
 
 const SOURCE_COLORS: Record<string, string> = {
-  industrial: '#D8622C',
-  traffic: '#8B7BD8',
-  biomass: '#3E9E58',
-  dust: '#8A8A80',
-  other: '#556070',
+  industrial: '#C25518',
+  traffic: '#6C58C9',
+  biomass: '#2F8A4B',
+  dust: '#6F6F65',
+  other: '#5A6675',
 };
 
 /**
@@ -40,12 +40,12 @@ export default function EvidenceOverlay() {
         <Layer
           id="evidence-cone-fill"
           type="fill"
-          paint={{ 'fill-color': '#4C9AFF', 'fill-opacity': 0.1 }}
+          paint={{ 'fill-color': '#2563EB', 'fill-opacity': 0.1 }}
         />
         <Layer
           id="evidence-cone-line"
           type="line"
-          paint={{ 'line-color': '#4C9AFF', 'line-width': 1.5, 'line-dasharray': [3, 2], 'line-opacity': 0.8 }}
+          paint={{ 'line-color': '#2563EB', 'line-width': 1.5, 'line-dasharray': [3, 2], 'line-opacity': 0.8 }}
         />
       </Source>
       {shapeFeatures.features.length > 0 && (

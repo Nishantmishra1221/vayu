@@ -26,9 +26,12 @@ export default function StatStrip() {
 
   if (!snapshot) {
     return (
-      <footer className="z-20 flex h-16 shrink-0 items-stretch divide-x divide-line border-t border-line bg-panel">
+      <footer className="z-20 flex shrink-0 items-stretch gap-2 overflow-x-auto border-t border-line bg-base px-3 py-2.5">
         {Array.from({ length: 6 }).map((_, i) => (
-          <div key={i} className="flex flex-1 flex-col justify-center gap-1.5 px-4">
+          <div
+            key={i}
+            className="flex min-w-[150px] flex-1 flex-col justify-center gap-1.5 rounded-md border border-line bg-panel px-3.5 py-2"
+          >
             <Skeleton className="h-3 w-16" />
             <Skeleton className="h-5 w-12" />
           </div>
@@ -92,17 +95,20 @@ export default function StatStrip() {
   ];
 
   return (
-    <footer className="z-20 flex h-16 shrink-0 items-stretch divide-x divide-line border-t border-line bg-panel">
+    <footer className="z-20 flex shrink-0 items-stretch gap-2 overflow-x-auto border-t border-line bg-base px-3 py-2.5">
       {cells.map((c) => (
         <button
           key={c.label}
           onClick={() => setActiveLayer(c.layer)}
           title={`Switch to ${c.layer} layer`}
-          className={`flex flex-1 flex-col justify-center gap-0.5 px-4 text-left transition-colors hover:bg-elevated ${
-            activeLayer === c.layer ? 'bg-elevated/60' : ''
+          aria-pressed={activeLayer === c.layer}
+          className={`flex min-w-[150px] flex-1 flex-col justify-center gap-1 rounded-md border px-3.5 py-2 text-left transition-all ${
+            activeLayer === c.layer
+              ? 'border-accent bg-accent-dim/50 shadow-card'
+              : 'border-line bg-panel hover:-translate-y-px hover:border-line-strong hover:shadow-card'
           }`}
         >
-          <span className="flex items-center gap-1.5 text-[10px] uppercase tracking-wider text-muted">
+          <span className="flex items-center gap-1.5 text-[11px] uppercase tracking-wider text-muted">
             {c.label} <SourceChip source={c.source} />
           </span>
           <span className="flex items-baseline gap-2">

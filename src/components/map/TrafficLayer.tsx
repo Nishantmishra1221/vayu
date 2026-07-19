@@ -35,7 +35,7 @@ export default function TrafficLayer() {
         id="traffic-casing"
         type="line"
         layout={{ 'line-cap': 'round', 'line-join': 'round' }}
-        paint={{ 'line-color': '#0E1116', 'line-width': 6, 'line-opacity': 0.6 }}
+        paint={{ 'line-color': '#FFFFFF', 'line-width': 6, 'line-opacity': 0.85 }}
       />
       <Layer
         id="traffic-line"
@@ -46,13 +46,13 @@ export default function TrafficLayer() {
             ? ([
                 'step',
                 ['get', 'ratio'],
-                '#E0453B', // jammed
+                '#D63A2F', // jammed
                 0.5,
-                '#F2C230', // slow
+                '#DFA700', // slow
                 0.75,
-                '#2E9E5B', // free flow
+                '#199A55', // free flow
               ] as any)
-            : '#667080',
+            : '#8B99A8',
           'line-width': 3.5,
           'line-opacity': 0.9,
         }}

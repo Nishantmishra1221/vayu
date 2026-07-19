@@ -36,7 +36,20 @@ const FIXTURES: Record<string, { fixture: BoundaryFixture; label: string }> = {
   kharagpur: { fixture: kharagpurB as unknown as BoundaryFixture, label: 'Kharagpur, West Bengal, India' },
 };
 
-export const EXAMPLE_CHIPS = ['Delhi', 'Mumbai', 'Kanpur', 'Kharagpur'];
+export const EXAMPLE_CHIPS = [
+  'Delhi',
+  'Mumbai',
+  'Kanpur',
+  'Kharagpur',
+  'Bengaluru',
+  'Kolkata',
+  'Chennai',
+  'Hyderabad',
+  'Pune',
+  'Jaipur',
+  'Ahmedabad',
+  'Lucknow',
+];
 
 function placeFromFixture(id: string): Place {
   const { fixture } = FIXTURES[id];
@@ -153,7 +166,7 @@ export async function reverseGeocode(lat: number, lon: number): Promise<string |
   if (reverseCache.has(key)) return reverseCache.get(key);
   try {
     const controller = new AbortController();
-    const t = setTimeout(() => controller.abort(), 2500);
+    const t = setTimeout(() => controller.abort(), 1200);
     const res = await fetch(
       `${NOMINATIM}/reverse?lat=${lat}&lon=${lon}&format=jsonv2&zoom=16`,
       { signal: controller.signal, headers: { Accept: 'application/json' } },

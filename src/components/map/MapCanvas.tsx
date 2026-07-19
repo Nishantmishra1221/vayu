@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef } from 'react';
 import Map, { AttributionControl, type MapLayerMouseEvent, type MapRef } from 'react-map-gl/maplibre';
 import { useAppStore } from '../../store/useAppStore';
-import { DARK_STYLE, SATELLITE_STYLE } from './basemaps';
+import { ROADS_STYLE, SATELLITE_STYLE } from './basemaps';
 import BoundaryLayer from './BoundaryLayer';
 import PollutionLayer from './PollutionLayer';
 import PopulationLayer from './PopulationLayer';
@@ -51,7 +51,7 @@ export default function MapCanvas() {
     <Map
       ref={mapRef}
       initialViewState={INDIA_VIEW}
-      mapStyle={basemap === 'roads' ? DARK_STYLE : (SATELLITE_STYLE as any)}
+      mapStyle={basemap === 'roads' ? ROADS_STYLE : (SATELLITE_STYLE as any)}
       onClick={onClick}
       attributionControl={false}
       cursor={place && !resolving ? 'crosshair' : 'grab'}

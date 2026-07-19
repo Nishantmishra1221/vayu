@@ -4,6 +4,7 @@ import { Layers, Wind, RadioTower, Hexagon, ShieldAlert } from 'lucide-react';
 import { useAppStore } from '../../store/useAppStore';
 import { formatTimeIST } from '../../lib/format';
 import PlaceSearch from '../search/PlaceSearch';
+import VayuLogo from '../shared/VayuLogo';
 import { USE_MOCKS } from '../../config';
 
 export default function TopBar() {
@@ -20,30 +21,30 @@ export default function TopBar() {
   }, []);
 
   return (
-    <header className="relative z-30 flex h-12 shrink-0 items-center gap-4 border-b border-line bg-panel px-4">
+    <header className="relative z-30 flex h-14 shrink-0 items-center gap-3 border-b border-line bg-panel px-4 sm:gap-4">
       <button
         onClick={() => navigate('/')}
-        className="flex items-center gap-2 font-display text-base font-semibold tracking-wide text-primary"
+        className="flex shrink-0 items-center gap-2 font-display text-base font-bold tracking-[0.12em] text-primary"
         title="Back to search"
       >
-        <Hexagon size={18} className="text-accent" strokeWidth={2.2} />
+        <VayuLogo size={26} />
         VAYU
       </button>
       {place && (
-        <div className="w-[340px]">
+        <div className="w-full min-w-[140px] max-w-[340px]">
           <PlaceSearch compact />
         </div>
       )}
       <div className="flex-1" />
       {USE_MOCKS && (
         <span
-          className="flex items-center gap-1 rounded-sm border border-line px-1.5 py-0.5 text-[10px] font-mono text-muted"
+          className="hidden items-center gap-1 rounded-sm border border-line px-1.5 py-0.5 text-[11px] font-mono text-muted lg:flex"
           title="Running on cached fixtures — demo-safe, no backend required"
         >
           <ShieldAlert size={11} /> DEMO DATA
         </span>
       )}
-      <div className="flex items-center gap-1.5 font-mono text-2xs text-secondary">
+      <div className="hidden items-center gap-1.5 font-mono text-2xs text-secondary md:flex">
         <span className="inline-block h-1.5 w-1.5 rounded-full bg-aqi-good animate-pulse" />
         live {formatTimeIST(now)}
       </div>
@@ -74,7 +75,7 @@ export default function TopBar() {
                     type="checkbox"
                     checked={overlays[key]}
                     onChange={() => toggleOverlay(key)}
-                    className="accent-[#4C9AFF]"
+                    className="accent-[#2563EB]"
                   />
                   <Icon size={12} />
                   {label}

@@ -41,7 +41,7 @@ export default function TimeScrubber() {
 
   return (
     <div
-      className={`pointer-events-auto flex w-[430px] min-w-[280px] shrink items-center gap-3 rounded border border-line bg-panel/90 px-3 py-2 backdrop-blur-sm transition-opacity ${
+      className={`pointer-events-auto flex w-[430px] min-w-0 max-w-full shrink items-center gap-3 rounded border border-line bg-panel/95 px-3 py-2 shadow-card backdrop-blur-sm transition-opacity ${
         timeVarying ? '' : 'opacity-40'
       }`}
     >
@@ -62,9 +62,9 @@ export default function TimeScrubber() {
         disabled={!timeVarying}
         onChange={(e) => setTimeOffset(Number(e.target.value))}
         aria-label="Forecast time offset"
-        className="flex-1 accent-[#4C9AFF]"
+        className="flex-1 accent-[#2563EB]"
       />
-      <span className="w-[150px] shrink-0 text-right font-mono text-[10px] text-secondary">
+      <span className="hidden w-[150px] shrink-0 text-right font-mono text-[11px] text-secondary sm:block">
         {timeVarying
           ? timeOffsetHours === 0
             ? `${formatDayTimeIST(label)} · now`

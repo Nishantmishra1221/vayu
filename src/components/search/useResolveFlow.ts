@@ -35,29 +35,29 @@ export function useResolveFlow() {
             },
           ],
         });
-        await wait(350);
+        await wait(140);
 
         const snapshot = await getSnapshot(place);
         queryClient.setQueryData(['snapshot', place.placeId], snapshot);
         push(`${snapshot.stations.length} monitoring stations in bounds`);
-        await wait(350);
+        await wait(140);
 
         const w = snapshot.weather;
         push(
           `Meteorology — wind ${Math.round(w.windSpeedKmh)} km/h ${windDirectionLabel(w.windDirectionDeg)}, boundary layer ${Math.round(w.boundaryLayerHeightM)} m`,
         );
-        await wait(350);
+        await wait(140);
 
         push(`${snapshot.summary.activeFires24h} active fire detections within 100 km`);
-        await wait(350);
+        await wait(140);
 
         push(`Population inside boundary — ${formatCompact(snapshot.summary.populationTotal)}`);
-        await wait(300);
+        await wait(140);
 
         push('Building forecast grid…', false);
         const forecast = await getForecast(place);
         queryClient.setQueryData(['forecast', place.placeId], forecast);
-        await wait(450);
+        await wait(220);
 
         setPlace(place);
         setResolving(null);
@@ -71,7 +71,7 @@ export function useResolveFlow() {
         useAppStore.setState((s) => ({
           resolving: [...(s.resolving ?? []), { label: msg, done: false }],
         }));
-        await wait(2600);
+        await wait(1800);
         setResolving(null);
         return false;
       }

@@ -8,11 +8,11 @@ export const AQI_BANDS: {
   max: number;
   color: string;
 }[] = [
-  { key: 'good', label: 'Good', min: 0, max: 50, color: '#2E9E5B' },
-  { key: 'satisfactory', label: 'Satisfactory', min: 51, max: 100, color: '#96C93D' },
-  { key: 'moderate', label: 'Moderate', min: 101, max: 200, color: '#F2C230' },
-  { key: 'poor', label: 'Poor', min: 201, max: 300, color: '#F07C1F' },
-  { key: 'very_poor', label: 'Very Poor', min: 301, max: 400, color: '#E0453B' },
+  { key: 'good', label: 'Good', min: 0, max: 50, color: '#16834A' },
+  { key: 'satisfactory', label: 'Satisfactory', min: 51, max: 100, color: '#63970F' },
+  { key: 'moderate', label: 'Moderate', min: 101, max: 200, color: '#B58500' },
+  { key: 'poor', label: 'Poor', min: 201, max: 300, color: '#CC5F0A' },
+  { key: 'very_poor', label: 'Very Poor', min: 301, max: 400, color: '#CD3A30' },
   { key: 'severe', label: 'Severe', min: 401, max: 1000, color: '#8C2A2A' },
 ];
 

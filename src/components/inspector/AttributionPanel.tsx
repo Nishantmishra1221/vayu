@@ -5,11 +5,11 @@ import ConfidenceBar from '../shared/ConfidenceBar';
 import SourceChip from '../shared/SourceChip';
 
 const SOURCE_COLORS: Record<string, string> = {
-  industrial: '#D8622C',
-  traffic: '#8B7BD8',
-  biomass: '#3E9E58',
-  dust: '#8A8A80',
-  other: '#556070',
+  industrial: '#C25518',
+  traffic: '#6C58C9',
+  biomass: '#2F8A4B',
+  dust: '#6F6F65',
+  other: '#5A6675',
 };
 
 /**
@@ -64,7 +64,7 @@ export default function AttributionPanel({ inspect }: { inspect: InspectResult }
                 <span className="truncate text-muted">▸ {s.evidenceSummary}</span>
               </button>
               {isOpen && (
-                <div className="ml-7 border-l border-line py-1.5 pl-3 text-[10px] text-secondary animate-fade-up">
+                <div className="ml-7 border-l border-line py-1.5 pl-3 text-[11px] text-secondary animate-fade-up">
                   {hasEvidence ? (
                     <>
                       Evidence drawn on the map — {s.evidence.features.length} feature

@@ -2,7 +2,7 @@ import { Layer, Source } from 'react-map-gl/maplibre';
 import { useAppStore } from '../../store/useAppStore';
 import { useSnapshot } from '../../api/queries';
 
-export const GREEN_RAMP = ['#14301E', '#256B3A', '#3E9E58', '#79C98C'];
+export const GREEN_RAMP = ['#EDE9DA', '#BFDDA6', '#6FB86B', '#22823E'];
 
 export default function GreenLayer() {
   const place = useAppStore((s) => s.place);

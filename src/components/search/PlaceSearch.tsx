@@ -5,8 +5,9 @@ import type { GeocodeSuggestion } from '../../types';
 import { useResolveFlow } from './useResolveFlow';
 
 /**
- * Debounced Nominatim autocomplete. 1000ms debounce — Nominatim allows one
- * request per second and getting blocked mid-demo is not an option.
+ * Debounced Nominatim autocomplete. 500ms debounce keeps typing responsive
+ * while staying under Nominatim's one-request-per-second budget in practice
+ * (a request only fires after a typing pause).
  */
 export default function PlaceSearch({ compact = false, autoFocus = false }: { compact?: boolean; autoFocus?: boolean }) {
   const [query, setQuery] = useState('');
@@ -30,7 +31,7 @@ export default function PlaceSearch({ compact = false, autoFocus = false }: { co
       setOpen(results.length > 0);
       setHighlight(0);
       setBusy(false);
-    }, 1000);
+    }, 500);
     return () => {
       clearTimeout(t);
       setBusy(false);
@@ -92,7 +93,9 @@ export default function PlaceSearch({ compact = false, autoFocus = false }: { co
             compact ? 'text-2xs' : 'text-sm'
           }`}
         />
-        {!compact && <kbd className="rounded border border-line px-1.5 font-mono text-2xs text-muted">/</kbd>}
+        {!compact && (
+          <kbd className="hidden rounded border border-line px-1.5 font-mono text-2xs text-muted sm:block">/</kbd>
+        )}
       </div>
       {open && (
         <ul className="absolute left-0 right-0 top-full z-50 mt-1 overflow-hidden rounded border border-line bg-elevated shadow-2xl">
@@ -106,7 +109,7 @@ export default function PlaceSearch({ compact = false, autoFocus = false }: { co
                 }`}
               >
                 {s.displayName}
-                {s.fixtureId && <span className="ml-2 font-mono text-[9px] text-muted">CACHED</span>}
+                {s.fixtureId && <span className="ml-2 font-mono text-[10px] text-muted">CACHED</span>}
               </button>
             </li>
           ))}

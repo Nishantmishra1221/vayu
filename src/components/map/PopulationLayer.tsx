@@ -4,7 +4,7 @@ import { Cross, GraduationCap, HeartPulse } from 'lucide-react';
 import { useAppStore } from '../../store/useAppStore';
 import { useSnapshot } from '../../api/queries';
 
-export const POP_RAMP = ['#1B2A4A', '#3D5FA8', '#6C8FE0', '#A8C0F5'];
+export const POP_RAMP = ['#E4EBF7', '#A9C1E8', '#6D8FD3', '#2E55A5'];
 
 export default function PopulationLayer() {
   const place = useAppStore((s) => s.place);

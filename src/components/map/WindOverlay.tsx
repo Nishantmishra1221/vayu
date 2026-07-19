@@ -49,7 +49,7 @@ export default function WindOverlay() {
       ctx.fillStyle = 'rgba(0,0,0,0.07)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       ctx.globalCompositeOperation = 'source-over';
-      ctx.strokeStyle = 'rgba(153,163,176,0.55)';
+      ctx.strokeStyle = 'rgba(55,72,94,0.55)';
       ctx.lineWidth = 1;
       for (const p of parts) {
         const nx = p.x + vx;

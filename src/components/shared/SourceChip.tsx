@@ -20,7 +20,7 @@ export default function SourceChip({ source, title }: { source: string; title?: 
   return (
     <span
       title={title ?? `Source: ${label}`}
-      className="inline-block rounded-sm border border-line px-1 py-px text-[9px] font-mono leading-none text-muted tracking-wider align-middle select-none"
+      className="inline-block rounded-sm border border-line px-1 py-px text-[10px] font-mono leading-none text-muted tracking-wider align-middle select-none"
     >
       {label}
     </span>

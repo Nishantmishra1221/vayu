@@ -12,7 +12,7 @@ export default function ClickPin() {
           key={inspector.key}
           className="pin-pulse absolute bottom-0 h-5 w-5 translate-y-1/2 rounded-full border-2 border-accent"
         />
-        <MapPin size={26} className="relative text-accent drop-shadow-lg" fill="#1F3A5F" />
+        <MapPin size={26} className="relative text-accent drop-shadow-lg" fill="#E4EDFC" />
       </div>
     </Marker>
   );

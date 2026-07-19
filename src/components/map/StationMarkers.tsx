@@ -18,13 +18,13 @@ export default function StationMarkers() {
           <Marker key={st.id} longitude={st.lon} latitude={st.lat} anchor="center">
             <div
               title={`${st.name} · AQI ${st.aqi} · ${st.source}`}
-              className="flex items-center gap-1 rounded-full border border-line-strong bg-base/85 py-0.5 pl-1 pr-1.5 backdrop-blur-sm"
+              className="flex items-center gap-1 rounded-full border border-line-strong bg-panel/90 py-0.5 pl-1 pr-1.5 shadow-sm backdrop-blur-sm"
             >
               <span
                 className="inline-block h-2 w-2 rounded-full"
                 style={{ background: colorFor(st.aqi) }}
               />
-              <span className="font-mono text-[10px] leading-none text-primary">
+              <span className="font-mono text-[11px] leading-none text-primary">
                 {pollutant === 'co' ? value.toFixed(1) : Math.round(value)}
               </span>
             </div>
