@@ -108,7 +108,14 @@ export function buildInspect(
   let wInd = 18 + upwindIndustrial.length * 9 + jitter() * 8;
   let wTraf = 14 + congested.length * 6 + (1 - snapshot.summary.congestionRatio) * 12 + jitter() * 8;
   let wBio = 6 + Math.min(30, upwindFires.length * 2.5) + jitter() * 6;
-  let wDust = 6 + nearConstruction.length * 3 + jitter() * 5;
+  // The PM10:PM2.5 ratio is the standard coarse-dust vs. combustion diagnostic:
+  // ~1.8 is a typical urban mix, >3 means a wind-blown dust episode dominates.
+  const coarseRatio = pollutantValues.pm25 > 0 ? pollutantValues.pm10 / pollutantValues.pm25 : 1.8;
+  const dustBias = Math.min(2.5, Math.max(0.6, coarseRatio / 1.8));
+  // Coarse mass above the typical urban ratio is crustal/wind-blown dust rather than
+  // combustion, so it adds to the dust weight directly instead of only scaling it.
+  const coarseExcess = Math.max(0, coarseRatio - 1.8) * 12;
+  let wDust = (6 + nearConstruction.length * 3 + jitter() * 5) * dustBias + coarseExcess;
   let wOther = 8 + jitter() * 6;
   const total = wInd + wTraf + wBio + wDust + wOther;
   wInd = (wInd / total) * 100;
